@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3dfb998b877a403492c958eb38f95477" Name="Diagram1">
-        <EntityTypeShape EntityType="ticketingModel.assignee" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ticketingModel.priority" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ticketingModel.project" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ticketingModel.status" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticketingModel.assignee" Width="1.5" PointX="6.875" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticketingModel.priority" Width="1.5" PointX="2.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticketingModel.project" Width="1.5" PointX="2.125" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticketingModel.status" Width="1.5" PointX="6.875" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="ticketingModel.FK_assignee_assignee" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ticketingModel.ticket" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="ticketingModel.ticket" Width="1.5" PointX="4.25" PointY="2.125" />
         <AssociationConnector Association="ticketingModel.FK_ticket_assignee" />
         <AssociationConnector Association="ticketingModel.FK_ticket_priority" />
         <AssociationConnector Association="ticketingModel.FK_ticket_project" />

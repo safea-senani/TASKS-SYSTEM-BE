@@ -101,6 +101,13 @@ namespace ticketingSystem_1.Controllers
             return Ok(record);
         }
 
+        [Route("api/TicketController/updateTicketList")]
+        [HttpGet]
+        public IHttpActionResult updateTicketList([FromUri] int[] idsList, int status=0)
+        {
+            // needs to update the status of the new list
+            return Ok(true);
+        }
 
 
 

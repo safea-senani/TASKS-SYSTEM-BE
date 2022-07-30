@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
+using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
+using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace ticketingSystem_1.Controllers
 {
@@ -11,12 +14,6 @@ namespace ticketingSystem_1.Controllers
     {
         private ticketingEntities _entityContext = new ticketingEntities();
 
-
-        //public IHttpActionResult getTicketsByStatus(int status=0)
-        //{
-        //    var data = _entityContext.tickets.Where(t => t.Status == status).ToList();
-        //    return Ok(data);
-        //}
 
         public IHttpActionResult getTicketsByStatus(int status = 0)
         {
@@ -42,6 +39,22 @@ namespace ticketingSystem_1.Controllers
             return Ok(data);
         }
 
-    }
+
+        //[Route("api/HomeController/updateTicketList")]
+        //[HttpPost]
+        //public IHttpActionResult updateTicketList(int[] idsList, int status)
+        //{
+        //    if (idsList != null)
+        //    {
+        //        var filteredTickets = _entityContext.tickets.Where(t => idsList.Contains(t.Id)).ToList();
+        //        filteredTickets.ForEach(c => c.Status = status);
+        //        return Ok("success");
+        //    }
+        //    else{
+        //        return Ok("failure");
+        //    }
+        //}
+
+        }
 }
 
