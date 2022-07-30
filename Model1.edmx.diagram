@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3dfb998b877a403492c958eb38f95477" Name="Diagram1">
+        <EntityTypeShape EntityType="ticketingModel.assignee" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticketingModel.priority" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticketingModel.project" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ticketingModel.status" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="ticketingModel.FK_assignee_assignee" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ticketingModel.ticket" Width="1.5" PointX="3" PointY="5.375" />
+        <AssociationConnector Association="ticketingModel.FK_ticket_assignee" />
+        <AssociationConnector Association="ticketingModel.FK_ticket_priority" />
+        <AssociationConnector Association="ticketingModel.FK_ticket_project" />
+        <AssociationConnector Association="ticketingModel.FK_ticket_status" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

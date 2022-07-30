@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ticketingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="assignee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="priority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ticket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="Project" Type="int" Nullable="false" />
+          <Property Name="Assignee" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Priorty" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_assignee_assignee">
+          <End Role="assignee" Type="Self.assignee" Multiplicity="1" />
+          <End Role="assignee1" Type="Self.assignee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="assignee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="assignee1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_assignee">
+          <End Role="assignee" Type="Self.assignee" Multiplicity="0..1" />
+          <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="assignee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Assignee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_priority">
+          <End Role="priority" Type="Self.priority" Multiplicity="0..1" />
+          <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="priority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Priorty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_project">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Project" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_status">
+          <End Role="status" Type="Self.status" Multiplicity="1" />
+          <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ticketingModelStoreContainer">
+          <EntitySet Name="assignee" EntityType="Self.assignee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="priority" EntityType="Self.priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project" EntityType="Self.project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status" EntityType="Self.status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ticket" EntityType="Self.ticket" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_assignee_assignee" Association="Self.FK_assignee_assignee">
+            <End Role="assignee" EntitySet="assignee" />
+            <End Role="assignee1" EntitySet="assignee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_assignee" Association="Self.FK_ticket_assignee">
+            <End Role="assignee" EntitySet="assignee" />
+            <End Role="ticket" EntitySet="ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_priority" Association="Self.FK_ticket_priority">
+            <End Role="priority" EntitySet="priority" />
+            <End Role="ticket" EntitySet="ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_project" Association="Self.FK_ticket_project">
+            <End Role="project" EntitySet="project" />
+            <End Role="ticket" EntitySet="ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_status" Association="Self.FK_ticket_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="ticket" EntitySet="ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ticketingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="assignee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="priority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_assignee_assignee">
+          <End Role="assignee" Type="Self.assignee" Multiplicity="1" />
+          <End Role="assignee1" Type="Self.assignee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="assignee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="assignee1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ticketingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="assignees" EntityType="Self.assignee" />
+          <EntitySet Name="priorities" EntityType="Self.priority" />
+          <EntitySet Name="projects" EntityType="Self.project" />
+          <EntitySet Name="status" EntityType="Self.status" />
+          <AssociationSet Name="FK_assignee_assignee" Association="Self.FK_assignee_assignee">
+            <End Role="assignee" EntitySet="assignees" />
+            <End Role="assignee1" EntitySet="assignees" />
+          </AssociationSet>
+          <EntitySet Name="tickets" EntityType="ticketingModel.ticket" />
+          <AssociationSet Name="FK_ticket_assignee" Association="ticketingModel.FK_ticket_assignee">
+            <End Role="assignee" EntitySet="assignees" />
+            <End Role="ticket" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_priority" Association="ticketingModel.FK_ticket_priority">
+            <End Role="priority" EntitySet="priorities" />
+            <End Role="ticket" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_project" Association="ticketingModel.FK_ticket_project">
+            <End Role="project" EntitySet="projects" />
+            <End Role="ticket" EntitySet="tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ticket_status" Association="ticketingModel.FK_ticket_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="ticket" EntitySet="tickets" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="ticket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="Project" Type="Int32" Nullable="false" />
+          <Property Name="Assignee" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Priorty" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_ticket_assignee">
+          <End Type="ticketingModel.assignee" Role="assignee" Multiplicity="0..1" />
+          <End Type="ticketingModel.ticket" Role="ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="assignee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Assignee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_priority">
+          <End Type="ticketingModel.priority" Role="priority" Multiplicity="0..1" />
+          <End Type="ticketingModel.ticket" Role="ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="priority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Priorty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_project">
+          <End Type="ticketingModel.project" Role="project" Multiplicity="1" />
+          <End Type="ticketingModel.ticket" Role="ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Project" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ticket_status">
+          <End Type="ticketingModel.status" Role="status" Multiplicity="1" />
+          <End Type="ticketingModel.ticket" Role="ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ticket">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ticketingModelStoreContainer" CdmEntityContainer="ticketingEntities">
+          <EntitySetMapping Name="assignees">
+            <EntityTypeMapping TypeName="ticketingModel.assignee">
+              <MappingFragment StoreEntitySet="assignee">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="priorities">
+            <EntityTypeMapping TypeName="ticketingModel.priority">
+              <MappingFragment StoreEntitySet="priority">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projects">
+            <EntityTypeMapping TypeName="ticketingModel.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status">
+            <EntityTypeMapping TypeName="ticketingModel.status">
+              <MappingFragment StoreEntitySet="status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tickets">
+            <EntityTypeMapping TypeName="ticketingModel.ticket">
+              <MappingFragment StoreEntitySet="ticket">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Priorty" ColumnName="Priorty" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
